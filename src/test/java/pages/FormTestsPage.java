@@ -1,6 +1,7 @@
 package pages;
 
 
+import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.commands.SetValue;
 import pages.components.CalendarComponent;
 import pages.components.InputComponent;
@@ -11,6 +12,16 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class FormTestsPage {
+
+    SelenideElement firstNameInput = $("[id=firstName]"),
+            lastNameInput = $("[id=lastName]"),
+            email = $("[id=userEmail]"),
+            phone = $("#userNumber"),
+            bDate = $("#dateOfBirthInput"),
+            subj = $("#subjectsInput"),
+            file = $("#uploadPicture"),
+            address = $("#currentAddress"),
+            submit = $("[id=submit]");
 
     CalendarComponent calendarComponent = new CalendarComponent();
     InputComponent inputComponent = new InputComponent();
@@ -24,17 +35,17 @@ public class FormTestsPage {
 
 
     public FormTestsPage setFirstName(String value) {
-        $("[id=firstName]").setValue(value);
+        firstNameInput.setValue(value);
         return this;
     }
 
     public FormTestsPage setLastName(String value) {
-        $("[id=lastName]").setValue(value);
+        lastNameInput.setValue(value);
         return this;
     }
 
     public FormTestsPage setUserMail(String value) {
-        $("[id=userEmail]").setValue(value);
+        email.setValue(value);
         return this;
     }
 
@@ -44,23 +55,23 @@ public class FormTestsPage {
     }
 
     public FormTestsPage setAdress(String value) {
-        $("#currentAddress").setValue(value);
+        address.setValue(value);
         return this;
     }
 
     public FormTestsPage setNumber(String value) {
-        $("#userNumber").setValue(value);
+        phone.setValue(value);
         return this;
     }
 
     public FormTestsPage setDateBirht(String day, String month, String year) {
-        $("#dateOfBirthInput").click();
+        bDate.click();
         calendarComponent.SetDate(day, month, year);
         return this;
     }
 
     public FormTestsPage setSubject(String symbol, String value) {
-        $("#subjectsInput").sendKeys(symbol);
+        subj.sendKeys(symbol);
         $(byText(value)).click();
         return this;
     }
@@ -71,7 +82,7 @@ public class FormTestsPage {
     }
 
     public FormTestsPage uploadFile(String value) {
-        $("#uploadPicture").uploadFromClasspath(value);
+        file.uploadFromClasspath(value);
         return this;
     }
 
@@ -86,7 +97,7 @@ public class FormTestsPage {
     }
 
     public FormTestsPage clickSubmit () {
-        $("[id=submit]").click();
+        submit.click();
         return this;
     }
 

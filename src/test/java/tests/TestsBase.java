@@ -7,6 +7,7 @@ import pages.FormTestsPage;
 public class TestsBase {
 
     FormTestsPage formTestsPage = new FormTestsPage();
+    TestDataProfile testDataProfile = new TestDataProfile();
 
     @BeforeAll
     static void beforeAll() {
